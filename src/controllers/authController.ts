@@ -6,6 +6,7 @@ import {actionTokenTypeEnum, configs, constants, emailActionsEnum, tokenTypeEnum
 
 import {ErrorHandler} from "../errors/errorHandler";
 import {IRequest} from "../interfaces/requestExtendedInterface";
+import {s3Service} from "../services/s3Service";
 
 const {ACTIVATE, FORGOT} = actionTokenTypeEnum;
 const {FORGOT_PASSWORD, ACTIVATE_EMAIL} = emailActionsEnum;
@@ -219,6 +220,23 @@ class AuthController {
             await Token.deleteMany({user: user._id});
 
             res.json('Password changed');
+        } catch (e) {
+            next(e);
+        }
+    }
+
+    public async uploadAvatar(req: IRequest, res: Response, next: NextFunction) {
+        try {
+            const {email} = req.body;
+            const user = await User.findOne({email});
+
+            const {avatar}: any = req.files;
+
+            const uploadInfo: any = await s3Service.uploadImage(avatar, 'user', user._id.toString());
+            await User.updateOne({email}, {avatar: uploadInfo.location}, {new: true});
+
+            res.json(uploadInfo);
+
         } catch (e) {
             next(e);
         }

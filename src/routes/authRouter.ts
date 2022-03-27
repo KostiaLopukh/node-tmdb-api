@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import {authController} from '../controllers/authController';
 import {authMiddleware, tokenMiddleware} from "../middleware";
+import {fileMiddleware} from "../middleware/fileMiddleware";
 
 const router = Router();
 
@@ -21,5 +22,8 @@ router.post('/sendMail', authController.sendEmailActivate);
 
 router.post('/checkAuth', authController.checkAuth);
 router.post('/refresh', tokenMiddleware.checkRefreshToken, authController.refresh);
+
+router.post('/uploadAvatar',fileMiddleware.checkUserAvatar, authController.uploadAvatar);
+
 
 export const authRouter = router;

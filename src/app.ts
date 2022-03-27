@@ -1,5 +1,6 @@
 import express, {NextFunction, Request, Response} from "express";
 import mongoose from "mongoose";
+import fileUpload from 'express-fileupload';
 import {configs} from "./constants/configs";
 import {apiRouter} from "./routes/apiRouter";
 import {engine} from 'express-handlebars';
@@ -8,7 +9,7 @@ import cors from 'cors';
 
 const app = express();
 
-
+app.use(fileUpload({}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 

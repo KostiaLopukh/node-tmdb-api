@@ -1,10 +1,12 @@
-import {NextFunction, Request, Response} from "express";
+import {NextFunction, Response} from "express";
 import {User} from "../db";
+import {IRequest} from "../interfaces/requestExtendedInterface";
 
-class UserController{
-    public async getByEmail(req:Request, res:Response, next:NextFunction){
+class UserController {
+    public async getByEmail(req: IRequest, res: Response, next: NextFunction) {
         try {
             const {email} = req.body;
+            console.log(req.files);
             const user = await User.findOne({email});
 
             res.json({user});
