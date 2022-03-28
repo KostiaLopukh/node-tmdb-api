@@ -227,16 +227,15 @@ class AuthController {
 
     public async uploadAvatar(req: IRequest, res: Response, next: NextFunction) {
         try {
-            const {email} = req.body;
-            const user = await User.findOne({email});
-
+            const token = req.get(AUTHORIZATION);
+            const {id}: any = await tokenService.verifyToken(token as string, ACCESS);
             const {avatar}: any = req.files;
 
-            const uploadInfo: any = await s3Service.uploadImage(avatar, 'user', user._id.toString());
-            await User.updateOne({email}, {avatar: uploadInfo.location}, {new: true});
+            const uploadInfo: any = await s3Service.uploadImage(avatar, 'user', id);
+
+            await User.updateOne({_id: id}, {avatar: uploadInfo.Location});
 
             res.json(uploadInfo);
-
         } catch (e) {
             next(e);
         }

@@ -26,8 +26,9 @@ const userSchema = new Schema({
     },
     avatar: {
         type:String,
+        default: 'https://tmdb2.s3.amazonaws.com/user/62406502df507b5db72cbfa1/b2cd337a-ab7f-48e9-8872-e0ca8c770342.png',
+        required: false,
     }
-
 }, {timestamps: true});
 
 export const User = model('user', userSchema);

@@ -6,7 +6,6 @@ class UserController {
     public async getByEmail(req: IRequest, res: Response, next: NextFunction) {
         try {
             const {email} = req.body;
-            console.log(req.files);
             const user = await User.findOne({email});
 
             res.json({user});

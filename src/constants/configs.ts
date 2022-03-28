@@ -20,4 +20,6 @@ export const configs = {
     AWS_S3_NAME: process.env.AWS_S3_NAME,
     AWS_S3_ACCESS_KEY: process.env.AWS_S3_ACCESS_KEY,
     AWS_S3_SECRET_KEY: process.env.AWS_S3_SECRET_KEY,
+
+    ALLOWED_ORIGIN: process.env.ALLOWED_ORIGIN as string,
 };

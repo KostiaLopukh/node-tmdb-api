@@ -7,8 +7,8 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 2021,
     },
-    parser: "@typescript-eslint/parser",
-    plugins: ["@typescript-eslint"],
+    parser: '@typescript-eslint/parser',
+    plugins: ['@typescript-eslint'],
     rules: {
         'array-bracket-newline': [
             'error',
@@ -17,6 +17,10 @@ module.exports = {
         'array-element-newline': [
             'error',
             {minItems: 2}
+        ],
+        quotes: [
+            'error',
+            'single'
         ],
         'arrow-body-style': 'error',
         'block-scoped-var': 'error',
@@ -41,7 +45,7 @@ module.exports = {
         'newline-per-chained-call': 'error',
         'new-parens': 'error',
         'no-alert': 'error',
-        semi: "error",
+        semi: 'error',
         'no-duplicate-imports': 'error',
         'no-nested-ternary': 'error',
         'no-mixed-spaces-and-tabs': 'error',
@@ -149,11 +153,11 @@ module.exports = {
         yoda: 'error'
     },
     settings: {
-        "import/resolver" : {
+        'import/resolver' : {
             node: {
                 extensions: [
-                    ".js",
-                    ".ts"
+                    '.js',
+                    '.ts'
                 ]
             }
         }

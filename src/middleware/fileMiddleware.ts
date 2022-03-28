@@ -8,14 +8,11 @@ const {PHOTOS_MIMETYPES, PHOTO_MAX_SIZE} = constants;
 class FileMiddleware {
     public checkUserAvatar(req: IRequest, res: Response, next: NextFunction) {
         try {
-            // @ts-ignore
-            const {avatar} = req.files;
-
+            const {avatar}:any = req.files;
             if (!avatar) {
                 next();
                 return;
             }
-
             const { name, size, mimetype } = avatar;
 
             if (!PHOTOS_MIMETYPES.includes(mimetype)) {

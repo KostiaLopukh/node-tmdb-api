@@ -12,10 +12,10 @@ const bucket = new S3({
 });
 
 class S3Service {
-    public async uploadImage(file:any, itemType:string, itemId:string) {
+    public async uploadImage(file: any, itemType: string, itemId: string) {
         const {name, data, mimetype} = file;
 
-        const uploadPath = _fileNameBuilder(name, itemType, itemId);
+        const uploadPath = this._fileNameBuilder(name, itemType, itemId);
 
         return bucket
             .upload({
@@ -23,14 +23,15 @@ class S3Service {
                 Body: data,
                 Key: uploadPath,
                 ContentType: mimetype,
+                ACL: "public-read",
             })
             .promise();
     }
-}
 
-function _fileNameBuilder(fileName: string, itemType: string, itemId: string) {
-    const fileExtension = path.extname(fileName);
-    return path.join(itemType, itemId, `${uuid.v4()}${fileExtension}`);
+    private _fileNameBuilder(fileName: string, itemType: string, itemId: string) {
+        const fileExtension = path.extname(fileName);
+        return path.join(itemType, itemId, `${uuid.v4()}${fileExtension}`);
+    }
 }
 
 export const s3Service = new S3Service();
