@@ -1,9 +1,9 @@
-import {NextFunction, Response} from "express";
+import {NextFunction, Response} from 'express';
 import {constants, tokenTypeEnum} from '../constants';
-import {ErrorHandler} from "../errors/errorHandler";
-import {tokenService} from "../services";
-import {Token, User} from "../db";
-import {IRequest} from "../interfaces/requestExtendedInterface";
+import {ErrorHandler} from '../errors/errorHandler';
+import {tokenService} from '../services';
+import {Token, User} from '../db';
+import {IRequest} from '../interfaces/requestExtendedInterface';
 
 const {AUTHORIZATION} = constants;
 

@@ -1,6 +1,6 @@
 import S3 from 'aws-sdk/clients/s3';
-import path from "path";
-import * as uuid from "uuid";
+import path from 'path';
+import * as uuid from 'uuid';
 import {configs} from '../constants';
 
 const {AWS_S3_NAME, AWS_S3_REGION, AWS_S3_ACCESS_KEY, AWS_S3_SECRET_KEY} = configs;
@@ -23,7 +23,7 @@ class S3Service {
                 Body: data,
                 Key: uploadPath,
                 ContentType: mimetype,
-                ACL: "public-read",
+                ACL: 'public-read',
             })
             .promise();
     }

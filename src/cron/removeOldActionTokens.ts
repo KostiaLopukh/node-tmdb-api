@@ -1,5 +1,5 @@
-import utc from "dayjs/plugin/utc";
-import {Action} from "../db";
+import utc from 'dayjs/plugin/utc';
+import {Action} from '../db';
 
 const dayJs = require('dayjs');
 dayJs.extend(utc);

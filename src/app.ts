@@ -9,8 +9,9 @@ import cors from 'cors';
 
 import {configs} from './constants/configs';
 import {apiRouter} from './routes/apiRouter';
-import {ErrorHandler} from './errors/errorHandler';
 import {startCron} from './cron';
+
+const {PORT, MONGO_CONNECT_URL, CLIENT_URL} = configs;
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.use(fileUpload({}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(helmet());
-app.use(cors({origin: _configureCors}));
+app.use(cors({origin: CLIENT_URL}));
 app.use(rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100 // limit each IP to 100 requests per windowMs
@@ -27,8 +28,6 @@ app.use(rateLimit({
 app.set('view engine', '.hbs');
 app.engine('.hbs', engine({defaultLayout: false}));
 app.set('views', path.join(__dirname, 'static'));
-
-const {PORT, MONGO_CONNECT_URL, ALLOWED_ORIGIN} = configs;
 
 app.use(apiRouter);
 
@@ -45,13 +44,13 @@ app.listen(PORT, () => {
     console.log(`Listening PORT ${PORT}...`);
 });
 
-function _configureCors(origin: any, callback: any) {
-    const whiteList = ALLOWED_ORIGIN.split(';');
-
-    if (!whiteList.includes(origin)) {
-        return callback(new ErrorHandler('CORS is not allowed', 400), false);
-    }
-
-    return callback(null, true);
-}
+// function _configureCors(origin: any, callback: any) {
+//     const whiteList = ALLOWED_ORIGIN.split(';');
+//
+//     if (!whiteList.includes(origin)) {
+//         return callback(new ErrorHandler('CORS is not allowed', 400), false);
+//     }
+//
+//     return callback(null, true);
+// }
 

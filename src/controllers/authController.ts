@@ -1,12 +1,12 @@
-import {NextFunction, Request, Response} from "express";
-import {Action, Token, User} from "../db";
-import {emailService, passwordService, tokenService} from "../services";
-import {IUser} from "../interfaces/interfaces";
+import {NextFunction, Request, Response} from 'express';
+import {Action, Token, User} from '../db';
+import {emailService, passwordService, tokenService} from '../services';
+import {IUser} from '../interfaces/interfaces';
 import {actionTokenTypeEnum, configs, constants, emailActionsEnum, tokenTypeEnum} from '../constants';
 
-import {ErrorHandler} from "../errors/errorHandler";
-import {IRequest} from "../interfaces/requestExtendedInterface";
-import {s3Service} from "../services/s3Service";
+import {ErrorHandler} from '../errors/errorHandler';
+import {IRequest} from '../interfaces/requestExtendedInterface';
+import {s3Service} from '../services/s3Service';
 
 const {ACTIVATE, FORGOT} = actionTokenTypeEnum;
 const {FORGOT_PASSWORD, ACTIVATE_EMAIL} = emailActionsEnum;
@@ -99,7 +99,7 @@ class AuthController {
             const accessToken = req.get(AUTHORIZATION);
             await Token.deleteOne({accessToken});
 
-            res.json('OK');
+            res.status(200);
         } catch (e) {
             next(e);
         }

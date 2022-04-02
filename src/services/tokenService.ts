@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
-import {ErrorHandler} from "../errors/errorHandler";
+import {ErrorHandler} from '../errors/errorHandler';
 import {actionTokenTypeEnum, configs, tokenTypeEnum} from '../constants';
-import {IToken} from "../interfaces/tokenInterface";
+import {ITokens} from '../interfaces/tokenInterface';
 // import {IUser} from "../interfaces/interfaces";
 
 const {JWT_ACCESS_SECRET, JWT_REFRESH_SECRET, JWT_ACTION_SECRET, JWT_FORGOT_SECRET} = configs;
@@ -10,7 +10,7 @@ const {ACCESS, REFRESH} = tokenTypeEnum;
 
 
 class TokenService {
-    public generateTokenPair(payload: any): IToken {
+    public generateTokenPair(payload: any): ITokens {
         const {id} = payload;
         const accessToken = jwt.sign({id}, JWT_ACCESS_SECRET, {expiresIn: '15m'});
         const refreshToken = jwt.sign({id}, JWT_REFRESH_SECRET, {expiresIn: '30d'});

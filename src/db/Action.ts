@@ -1,4 +1,4 @@
-import {model, Schema} from "mongoose";
+import {model, Schema} from 'mongoose';
 import {actionTokenTypeEnum} from '../constants';
 
 const tokenSchema = new Schema({

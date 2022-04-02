@@ -1,7 +1,7 @@
-import {IRequest} from "../interfaces/requestExtendedInterface";
-import {NextFunction, Response} from "express";
+import {IRequest} from '../interfaces/requestExtendedInterface';
+import {NextFunction, Response} from 'express';
 import {constants} from '../constants';
-import {ErrorHandler} from "../errors/errorHandler";
+import {ErrorHandler} from '../errors/errorHandler';
 
 const {PHOTOS_MIMETYPES, PHOTO_MAX_SIZE} = constants;
 

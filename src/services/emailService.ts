@@ -1,8 +1,8 @@
-import nodemailer from "nodemailer";
-import EmailTemplates from "email-templates";
-import path from "path";
-import {configs} from "../constants";
-import {allTemplates} from "../static/allTemplates";
+import nodemailer from 'nodemailer';
+import EmailTemplates from 'email-templates';
+import path from 'path';
+import {configs} from '../constants';
+import {allTemplates} from '../static/allTemplates';
 
 const {NO_REPLY_EMAIL, NO_REPLY_PASSWORD} = configs;
 
